@@ -57,7 +57,7 @@ for (var i = 0; i < list.length; i++) {
         `+ commentList[0] + commentList[1] + `
       </div>
       <div class="">
-        教师评语：<div>`+ list[i].content + `</div>
+        教师评语：<span>`+ list[i].content + `</span>
       </div>
     </div>
     <div class="feedback"><button>回评</button>家长评价</div>
@@ -67,7 +67,7 @@ for (var i = 0; i < list.length; i++) {
         `+ commentList[2] + labelHtml + `
         </div>
         <div>
-          家长评语：<div>`+ list[i].content + `</div>
+          家长评语：<span>`+ list[i].content + `</span>
         </div>
       </div>
     </div>
