@@ -1,0 +1,71 @@
+.student-information {
+  display: flex;
+  align-items: center;
+}
+
+.teacher-comment {
+  display: flex;
+  padding-top: 15px;
+  padding-bottom: 10px;
+}
+
+.comment {
+  display: flex;
+  align-items: center;
+  margin-right: 60px;
+}
+
+span img {
+  width: 50px;
+  height: 40px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.full-star {
+  background: url(img/icon-star-full.png);
+  background-size: cover;
+  width: 15px;
+  height: 15px;
+  margin-left: 5px;
+}
+
+.empty-star {
+  background: url(img/icon-star-empty.png);
+  background-size: cover;
+  width: 15px;
+  height: 15px;
+  margin-left: 5px;
+}
+
+input {
+  border: none;
+  outline: medium;
+  font-size: 16px;
+  width: 800px;
+
+
+}
+
+.feedback {
+  padding-top: 10px;
+  padding-bottom: 10px;
+
+}
+
+.feedback button {
+  border-radius: 10%;
+  background: rgb(156, 204, 195);
+  border: 1px solid#bad9d1;
+  margin-right: 5px;
+}
+
+.label {
+  background-color: #fdf2ed;
+  border-radius: 10%;
+  color: rgb(206, 74, 74);
+  margin-right: 10px;
+
+  font-size: 13px;
+  border: 1px solid red;
+}
