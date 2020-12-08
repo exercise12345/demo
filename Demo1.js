@@ -56,23 +56,24 @@ for (var i = 0; i < list.length; i++) {
       <div class="teacher-comment">
         `+ commentList[0] + commentList[1] + `
       </div>
-      <div class="">
-        教师评语：<span>`+ list[i].content + `</span>
-      </div>
-    </div>
+      <div class="remark">
+        教师评语：
+          <textarea  cols = "50" rows = "4" maxlength="1000" placeholder="最多输入1000个字" required ></textarea>
+      </div >
+    </div >
     <div class="feedback"><button>回评</button>家长评价</div>
     <div class="parental-evaluation">
       <div>
         <div class="teacher-comment">
-        `+ commentList[2] + labelHtml + `
+          `+ commentList[2] + labelHtml + `
         </div>
         <div>
           家长评语：<span>`+ list[i].content + `</span>
         </div>
       </div>
     </div>
-  </div>
-  `
+  </div >
+    `
 }
 
 
