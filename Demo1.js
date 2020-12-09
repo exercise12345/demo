@@ -13,7 +13,10 @@ var list = [{
 ]
 var labels = ["教学水平差", "服务态度差", " 作业布置不合理"]
 var tag = ["纪律专注：", "活跃参与：", "综合评价：", "标签:"]
-var stars = ["full-star", "full-star", "full-star", "full-star", "full-star"]
+var stars = ["empty-star", "empty-star", "empty-star", "empty-star", "empty-star"]
+
+
+
 
 
 var cent = document.getElementById("main");
@@ -24,7 +27,7 @@ var commentList = []
 for (var i = 0; i < tag.length - 1; i++) {
   let starHtml = ``
   for (var j = 0; j < stars.length; j++) {
-    starHtml += `<div class='${stars[j]}'></div>`
+    starHtml += `<div class='${stars[j]}  ${'tag' + i}'></div>`
   }
   commentHtml = `<div class="comment">
   `+ tag[i] + starHtml + `
@@ -43,14 +46,17 @@ labelHtml = `<div class="comment">` + tag[3] + labelHtml + `
 `
 console.log(labelHtml)
 
-
-cent.innerHTML = ''
-for (var i = 0; i < list.length; i++) {
-  cent.innerHTML += `
+//数据接收
+var storage = window.sessionStorage;  
+var obj = JSON.parse(storage.getItem("data"))
+console.log(obj)
+console.log()
+// for (var i = 0; i < list.length; i++) {
+  cent.innerHTML = `
   <div>
     <div class="student-information">
       <span><img src="img/img.png" alt=""></span>
-      <span id="name">`+ list[i].name + `</span>
+      <span id="name">`+ list[0].name + `</span>
     </div>
     <div class="teacher-evaluation">
       <div class="teacher-comment">
@@ -58,7 +64,7 @@ for (var i = 0; i < list.length; i++) {
       </div>
       <div class="remark">
         教师评语：
-          <textarea  cols = "50" rows = "4" maxlength="1000" placeholder="最多输入1000个字" required ></textarea>
+          <textarea  cols = "50" rows = "4" maxlength="1000" placeholder="" value="" >`+obj[2]+`</textarea>
       </div >
     </div >
     <div class="feedback"><button>回评</button>家长评价</div>
@@ -68,16 +74,22 @@ for (var i = 0; i < list.length; i++) {
           `+ commentList[2] + labelHtml + `
         </div>
         <div>
-          家长评语：<span>`+ list[i].content + `</span>
+          家长评语：<span>`+ list[0].content + `</span>
         </div>
       </div>
     </div>
   </div >
     `
+//}
+
+
+comment = document.querySelectorAll(".comment");
+console.log(comment)
+for (var i = 0; i < comment.length; i++) {
+  lis = document.querySelectorAll(`.comment .tag${i}`);
+  fnShow (obj[i])
+
 }
-
-
-
 
 
 // for (var i = 1; i < list.length;) {
