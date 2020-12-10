@@ -11,12 +11,10 @@ var list = [{
   content: "小李说：“3+1=2”"
 },
 ]
-var tag = ["纪律专注：", "活跃参与："]
+var labels = ["教学水平差", "服务态度差", " 作业布置不合理"]
+var tag = ["纪律专注：", "活跃参与：", "综合评价：", "标签:"]
 var stars = ["empty-star", "empty-star", "empty-star", "empty-star", "empty-star"];
-var test = [
-  { 纪律专注: stars },
-  { 活跃参与: stars },
-]
+
 
 var cent = document.getElementById("main");
 //评价星星
@@ -31,17 +29,23 @@ for (var i = 0; i < tag.length; i++) {
   `+ tag[i] + starHtml + `
 </div>
 `
-  console.log(commentHtml)
   commentList[i] = commentHtml
 }
-console.log(commentList)
 
 
+//评价标签
+let labelHtml = ``
+for (var j = 0; j < labels.length; j++) {
+  labelHtml += `<button class='label' onclick='clickLabel(event)'>${labels[j]}</button>`
+}
+labelHtml = `<div class="comment">` + tag[3] + labelHtml + `
+</div>
+`
 cent.innerHTML = `
   <div>
     <div class="student-information">
       <span><img src="img/img.png" alt=""></span>
-      <span id="name">`+ list[i].name + `</span>
+      <span id="name">`+ list[1].name + `</span>
     </div>
     <div class="teacher-evaluation">
       <div class="teacher-comment">
@@ -49,8 +53,20 @@ cent.innerHTML = `
       </div>
       <div class="remark">
         教师评语：
-          <textarea  id='text' cols = "50" rows = "4" maxlength="1000" placeholder="最多输入1000个字" required ></textarea>
+          <textarea  class='text' cols = "50" rows = "4" maxlength="1000" placeholder="最多输入1000个字" required ></textarea>
       </div >
+    </div>
+    <div class="feedback"><button>回评</button>家长评价</div>
+    <div class="parental-evaluation">
+      <div>
+        <div class="teacher-comment">
+          `+ commentList[2] + labelHtml + `
+        </div>
+        <div class="remark">
+          家长评语：
+          <textarea  class='text' cols = "50" rows = "4" maxlength="1000" placeholder="最多输入1000个字" required ></textarea>
+        </div>
+      </div>
     </div>
     <div>
       <button onclick="submit()" >

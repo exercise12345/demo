@@ -11,16 +11,17 @@ var list = [{
   content: "小李说：“3+1=2”"
 },
 ]
-var labels = ["教学水平差", "服务态度差", " 作业布置不合理"]
+var objList=[]
 var tag = ["纪律专注：", "活跃参与：", "综合评价：", "标签:"]
 var stars = ["empty-star", "empty-star", "empty-star", "empty-star", "empty-star"]
 
 
+var storage = window.sessionStorage;  
+var objList = JSON.parse(storage.getItem("data"))
 
-
+console.log(objList)
 
 var cent = document.getElementById("main");
-let renderHtml = `<span>hello</span>`
 //评价星星
 let commentHtml = ``
 var commentList = []
@@ -35,24 +36,24 @@ for (var i = 0; i < tag.length - 1; i++) {
 `
   commentList[i] = commentHtml
 }
-console.log(commentList)
 //评价标签
-let labelHtml = ``
-for (var j = 0; j < labels.length; j++) {
-  labelHtml += `<button class='label'>${labels[j]}</button>`
-}
-labelHtml = `<div class="comment">` + tag[3] + labelHtml + `
+var labelList = []
+
+for (var i = 0; i < objList.length; i++) {
+  let labelHtml = ``
+  for (var j = 0; j < objList[i][3].length; j++) {
+    labelHtml += `<button class='label'>${objList[i][3][j]}</button>`
+  }
+  labelHtml1 = `<div class="comment">` + tag[3] + labelHtml + `
 </div>
 `
-console.log(labelHtml)
-
-//数据接收
-var storage = window.sessionStorage;  
-var obj = JSON.parse(storage.getItem("data"))
-console.log(obj)
-console.log()
-// for (var i = 0; i < list.length; i++) {
-  cent.innerHTML = `
+  
+labelList[i]=labelHtml1
+}
+console.log(labelList)
+for (var i = 0; i < objList.length; i++) {
+ 
+  cent.innerHTML += `
   <div>
     <div class="student-information">
       <span><img src="img/img.png" alt=""></span>
@@ -64,34 +65,59 @@ console.log()
       </div>
       <div class="remark">
         教师评语：
-          <textarea  cols = "50" rows = "4" maxlength="1000" placeholder="" value="" >`+obj[2]+`</textarea>
+          <textarea  cols = "50" rows = "4" maxlength="1000"value="" >`+objList[i][4]+`</textarea>
       </div >
     </div >
     <div class="feedback"><button>回评</button>家长评价</div>
     <div class="parental-evaluation">
       <div>
         <div class="teacher-comment">
-          `+ commentList[2] + labelHtml + `
+          `+ commentList[2] + labelList[i] + `
         </div>
-        <div>
-          家长评语：<span>`+ list[0].content + `</span>
+        <div class="remark">
+          家长评语：<textarea  cols = "50" rows = "4" maxlength="1000" placeholder="" value="" >`+objList[i][5]+`</textarea>
         </div>
       </div>
+    </div>delete
+    <div>
+      <button onclick="deleteComment(`+i+`)" >
+        删除评论
+      </button>
     </div>
   </div >
     `
-//}
-
-
-comment = document.querySelectorAll(".comment");
-console.log(comment)
-for (var i = 0; i < comment.length; i++) {
-  lis = document.querySelectorAll(`.comment .tag${i}`);
-  fnShow (obj[i])
-
+  
+    showStars (i)
 }
 
+cent.innerHTML +=`<div>
+<button onclick="jump()" >
+  添加评论
+</button>
+</div>`
+function jump () {
+  //清除label1中的值
+  label1=[]
+  console.log(label1)
+  window.location.href="Demo2.html";
+}
+function deleteComment (num) {
+  console.log(num)
+  var arr = JSON.parse(storage.getItem('data'))
+  console.log(arr)
+  arr.splice(num,1);
+  storage.setItem('data', JSON.stringify(arr));
+  console.log(arr)
+  window.location.reload()
+}
 
+function showStars (num) {
+  comment = document.querySelectorAll(".comment");
+  for (var j = 0; j < comment.length; j++) {
+    lis = document.querySelectorAll(`.comment .tag${j}`);
+    fnShow(objList[num][j])
+  }
+}
 // for (var i = 1; i < list.length;) {
 //   cent.innerHTML +=
 //     "<div  class='student-information'>" +
